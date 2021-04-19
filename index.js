@@ -25,6 +25,7 @@ server.use(
 
       type Query {
         user(id: String!): User
+        users: [User]
       }
     `),
     // The methods that we'll use to get the data for our main queries.
@@ -32,6 +33,9 @@ server.use(
       // Get a user based on the ID and return it as a Promise
       user({ id }) {
         return User.findById(id);
+      },
+      users() {
+        return User.find({});
       },
     },
     // Display the GraphiQL web interface (for easy usage).
